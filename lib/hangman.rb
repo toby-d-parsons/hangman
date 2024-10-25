@@ -5,7 +5,7 @@ require_relative './hangman/board.rb'
 
 module Hangman
   def self.run
-    get_file_name
+    Dir.mkdir('./saves') unless Dir.exist?('./saves')
     puts "Welcome to Hangman! Type 'new' or 'load' to play"
     main_menu
   end
@@ -56,10 +56,19 @@ module Hangman
   end
 
   def self.save_game
-    if overwrite_or_new_save? == 'new'
-      write_to_file(get_file_name)
+    if overwrite_or_new_save? == 'overwrite'
+      if Dir.glob("./saves/*.yaml").length > 0
+        uuid = select_save('saving')
+        write_to_file(uuid)
+        puts "Save #{uuid} overwritten"
+      else
+        puts "No save files available!"
+        puts "Saving a new file..."
+        write_to_file(get_file_name)
+      end
     else
-      overwrite_save
+      puts "Saving a new file..."
+      write_to_file(get_file_name)
     end
     puts "Your progress has been saved"
   end
