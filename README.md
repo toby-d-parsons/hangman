@@ -24,4 +24,4 @@ This terminal-based application allows you to play the game hangman against the 
     ruby lib/hangman.rb
     ```
 
-4. Follow the onscreen directions to play. Note: Any saved games are stored in YAML format in the saves folder. 
+4. Follow the onscreen directions to play. Note: Any saved games are stored in YAML format in the saves folder. This folder is created once you first load the application
